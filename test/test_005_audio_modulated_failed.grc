@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: audio_modulated_test
+    id: test_005_audio_modulated_failed
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -174,7 +174,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 148.0]
+    coordinate: [24, 148.0]
     rotation: 0
     state: enabled
 - name: blocks_short_to_char_0
@@ -216,7 +216,7 @@ blocks:
     alias: ''
     comment: ''
     constellation: test_constellation
-    maxoutbuf: '1'
+    maxoutbuf: '0'
     minoutbuf: '0'
   states:
     bus_sink: false
@@ -314,7 +314,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1392, 340.0]
+    coordinate: [840, 300.0]
     rotation: 0
     state: enabled
 - name: root_raised_cosine_filter_0
