@@ -86,6 +86,26 @@ blocks:
     coordinate: [312, 12.0]
     rotation: 0
     state: enabled
+- name: analog_agc_xx_0
+  id: analog_agc_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    gain: '1.0'
+    max_gain: '10'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    rate: 1e-4
+    reference: '1.0'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [960, 156.0]
+    rotation: 0
+    state: enabled
 - name: audio_sink_1_0
   id: audio_sink
   parameters:
@@ -100,7 +120,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1768, 180.0]
+    coordinate: [1936, 180.0]
     rotation: 0
     state: enabled
 - name: blocks_file_source_0
@@ -110,7 +130,7 @@ blocks:
     alias: ''
     begin_tag: pmt.PMT_NIL
     comment: ''
-    file: /home/mbaer/projects/projektarbeit_sdr_demo/test/hallo_test.wav
+    file: hallo_test.wav
     length: '0'
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -139,7 +159,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1592, 180.0]
+    coordinate: [1760, 180.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_decoder_cb_0
@@ -155,7 +175,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1208, 180.0]
+    coordinate: [1376, 180.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_encoder_bc_0
@@ -237,7 +257,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1432, 180.0]
+    coordinate: [1600, 180.0]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0
@@ -330,6 +350,98 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [720, 284.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_0_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '""'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1392, 292.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0_0
@@ -426,7 +538,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1768, 228.0]
+    coordinate: [1936, 228.0]
     rotation: 0
     state: enabled
 - name: qtgui_waterfall_sink_x_0
@@ -487,7 +599,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1768, 308.0]
+    coordinate: [1936, 308.0]
     rotation: 0
     state: enabled
 - name: root_raised_cosine_filter_0
@@ -533,11 +645,12 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [968, 140.0]
+    coordinate: [1136, 140.0]
     rotation: 0
     state: enabled
 
 connections:
+- [analog_agc_xx_0, '0', root_raised_cosine_filter_0_0, '0']
 - [blocks_file_source_0, '0', epy_block_0, '0']
 - [blocks_short_to_float_0, '0', audio_sink_1_0, '0']
 - [blocks_short_to_float_0, '0', qtgui_time_sink_x_0_0, '0']
@@ -547,8 +660,9 @@ connections:
 - [digital_constellation_encoder_bc_0, '0', root_raised_cosine_filter_0, '0']
 - [epy_block_0, '0', digital_constellation_encoder_bc_0, '0']
 - [epy_block_1, '0', blocks_short_to_float_0, '0']
-- [root_raised_cosine_filter_0, '0', root_raised_cosine_filter_0_0, '0']
+- [root_raised_cosine_filter_0, '0', analog_agc_xx_0, '0']
 - [root_raised_cosine_filter_0_0, '0', digital_constellation_decoder_cb_0, '0']
+- [root_raised_cosine_filter_0_0, '0', qtgui_const_sink_x_0_0, '0']
 
 metadata:
   file_format: 1

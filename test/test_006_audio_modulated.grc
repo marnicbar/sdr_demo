@@ -110,7 +110,7 @@ blocks:
     alias: ''
     begin_tag: pmt.PMT_NIL
     comment: ''
-    file: /home/mbaer/projects/projektarbeit_sdr_demo/test/hallo_test.wav
+    file: hallo_test.wav
     length: '0'
     maxoutbuf: '0'
     minoutbuf: '0'
