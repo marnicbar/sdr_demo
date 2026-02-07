@@ -89,6 +89,36 @@ blocks:
     coordinate: [192, 12.0]
     rotation: 0
     state: enabled
+- name: source_select
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    label0: Audio file
+    label1: Random source
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '2'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '1'
+    widget: radio_buttons
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [752, 84.0]
+    rotation: 0
+    state: enabled
 - name: sps
   id: variable
   parameters:
@@ -117,7 +147,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [144, 452.0]
+    coordinate: [40, 404.0]
     rotation: 0
     state: enabled
 - name: blocks_file_source_0
@@ -139,9 +169,32 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [144, 300.0]
+    coordinate: [64, 260.0]
     rotation: 0
-    state: disabled
+    state: enabled
+- name: blocks_selector_0
+  id: blocks_selector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    enabled: 'True'
+    input_index: source_select
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    num_outputs: '1'
+    output_index: '0'
+    showports: 'True'
+    type: short
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 300.0]
+    rotation: 0
+    state: enabled
 - name: digital_constellation_encoder_bc_0
   id: digital_constellation_encoder_bc
   parameters:
@@ -155,7 +208,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [552, 332.0]
+    coordinate: [720, 332.0]
     rotation: 0
     state: enabled
 - name: epy_block_0
@@ -188,7 +241,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [368, 332.0]
+    coordinate: [536, 332.0]
     rotation: 0
     state: enabled
 - name: iio_pluto_sink_0
@@ -204,17 +257,17 @@ blocks:
     filter: ''
     filter_source: '''Auto'''
     fpass: '0'
-    frequency: '2500000000'
+    frequency: '2500010000'
     fstop: '0'
     len_tag_key: ''
     samplerate: samp_rate*sps
     type: fc32
-    uri: usb:7.32.5
+    uri: ip:pluto-tx.local
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1080, 276.0]
+    coordinate: [1248, 276.0]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0
@@ -306,7 +359,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [816, 428.0]
+    coordinate: [984, 428.0]
     rotation: 0
     state: enabled
 - name: qtgui_waterfall_sink_x_0
@@ -367,7 +420,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1080, 460.0]
+    coordinate: [1248, 460.0]
     rotation: 0
     state: enabled
 - name: root_raised_cosine_filter_0
@@ -382,7 +435,7 @@ blocks:
     interp: sps
     maxoutbuf: '0'
     minoutbuf: '0'
-    ntaps: 8*32
+    ntaps: 11*sps
     samp_rate: sps*samp_rate
     sym_rate: samp_rate
     type: interp_fir_filter_ccf
@@ -390,13 +443,14 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [816, 292.0]
+    coordinate: [984, 292.0]
     rotation: 0
     state: enabled
 
 connections:
-- [analog_random_uniform_source_x_0, '0', epy_block_0, '0']
-- [blocks_file_source_0, '0', epy_block_0, '0']
+- [analog_random_uniform_source_x_0, '0', blocks_selector_0, '1']
+- [blocks_file_source_0, '0', blocks_selector_0, '0']
+- [blocks_selector_0, '0', epy_block_0, '0']
 - [digital_constellation_encoder_bc_0, '0', qtgui_const_sink_x_0, '0']
 - [digital_constellation_encoder_bc_0, '0', root_raised_cosine_filter_0, '0']
 - [epy_block_0, '0', digital_constellation_encoder_bc_0, '0']
