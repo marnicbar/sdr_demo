@@ -21,4 +21,4 @@ jobs:
 
     - name: Run tests
       run: |
-        python3 -m unittest discover -s custom_blocks -p 'test_*.py' -v
+        python -m unittest discover -s custom_blocks -p 'test_*.py' -v
