@@ -9,14 +9,15 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    container: gnuradio/ci:ubuntu-24.04-3.10
 
     steps:
     - uses: actions/checkout@v4
     
-    - name: Install dependencies
-      run: |
-        sudo apt update
-        sudo apt install gnuradio
+    # - name: Install dependencies
+    #   run: |
+    #     sudo apt update
+    #     sudo apt install gnuradio
 
     - name: Run tests
       run: |
