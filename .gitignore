@@ -2,4 +2,6 @@
 __pycache__/
 *.pyc
 
+!custom_blocks/*.py
+
 output
