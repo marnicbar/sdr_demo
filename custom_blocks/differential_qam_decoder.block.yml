@@ -1,0 +1,25 @@
+id: differential_qam_decoder
+label: Differential QAM Decoder
+category: '[Custom]'
+
+parameters:
+  - id: order
+    label: QAM Order
+    dtype: enum
+    options: [qam.QAM4, qam.QAM16, qam.QAM64, qam.QAM256]
+    option_labels: ["4-QAM", "16-QAM", "64-QAM", "256-QAM"]
+    default: qam.QAM4
+
+inputs:
+  - domain: stream
+    dtype: byte
+
+outputs:
+  - domain: stream
+    dtype: byte
+
+templates:
+  imports: from differential_qam_decoder.differential_qam_decoder import differential_qam_decoder
+  make: differential_qam_decoder(order=${order})
+
+file_format: 1
