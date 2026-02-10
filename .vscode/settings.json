@@ -2,7 +2,7 @@
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        "./test/custom_blocks",
+        "./custom_blocks",
         "-p",
         "test_*.py"
     ],
