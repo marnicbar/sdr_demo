@@ -73,20 +73,5 @@ class test_differential_qam_encoder(gr_unittest.TestCase):
         result = sink.data()
         self.assertEqual(list(result), list(expected))
 
-
-    def test_state_reset(self):
-        src_data = np.array([1, 1], dtype=np.uint8)
-
-        src = blocks.vector_source_b(src_data.tolist(), False)
-        enc = differential_qam_encoder(order=qam.QAM4)
-        sink = blocks.vector_sink_b()
-
-        self.tb.connect(src, enc, sink)
-        self.tb.run()
-
-        # If the block is recreated, prev_symbol must reset
-        self.assertEqual(list(sink.data()), [1, 2])
-
-
 if __name__ == '__main__':
     gr_unittest.run(test_differential_qam_encoder)

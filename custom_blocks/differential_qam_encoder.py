@@ -25,6 +25,7 @@ class differential_qam_encoder(gr.sync_block):  # other base classes are basic_b
 
     def work(self, input_items, output_items):
         for i in range(len(input_items[0])):
-            output_items[0][i] = ((self.prev_symbol & self.mask) + input_items[0][i]) % self.modulo
+            with np.errstate(over='ignore'): # Overflow might happen (suppress warning since it's intentional)
+                output_items[0][i] = ((self.prev_symbol & self.mask) + input_items[0][i]) % self.modulo
             self.prev_symbol = output_items[0][i]
         return len(output_items[0])
