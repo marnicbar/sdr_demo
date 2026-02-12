@@ -110,13 +110,13 @@ blocks:
     options: '[0, 1, 2]'
     orient: Qt.QVBoxLayout
     type: int
-    value: '1'
+    value: '0'
     widget: radio_buttons
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [752, 84.0]
+    coordinate: [576, 12.0]
     rotation: 0
     state: enabled
 - name: sps
@@ -172,6 +172,22 @@ blocks:
     coordinate: [64, 260.0]
     rotation: 0
     state: enabled
+- name: blocks_pack_k_bits_bb_0
+  id: blocks_pack_k_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: quantization
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1032, 332.0]
+    rotation: 0
+    state: enabled
 - name: blocks_selector_0
   id: blocks_selector
   parameters:
@@ -195,6 +211,38 @@ blocks:
     coordinate: [320, 300.0]
     rotation: 0
     state: enabled
+- name: blocks_unpack_k_bits_bb_0
+  id: blocks_unpack_k_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: quantization
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 332.0]
+    rotation: 0
+    state: enabled
+- name: differential_qam_encoder_0
+  id: differential_qam_encoder
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    order: qam.QAM16
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1200, 332.0]
+    rotation: 0
+    state: enabled
 - name: digital_constellation_encoder_bc_0
   id: digital_constellation_encoder_bc
   parameters:
@@ -208,7 +256,25 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [720, 332.0]
+    coordinate: [1456, 332.0]
+    rotation: 0
+    state: enabled
+- name: digital_scrambler_bb_0
+  id: digital_scrambler_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    len: '7'
+    mask: '0x8A'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    seed: '0x7F'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [896, 316.0]
     rotation: 0
     state: enabled
 - name: epy_block_0
@@ -267,7 +333,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1248, 276.0]
+    coordinate: [1992, 276.0]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0
@@ -359,7 +425,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [984, 428.0]
+    coordinate: [1728, 428.0]
     rotation: 0
     state: enabled
 - name: qtgui_waterfall_sink_x_0
@@ -420,7 +486,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1248, 460.0]
+    coordinate: [1992, 460.0]
     rotation: 0
     state: enabled
 - name: root_raised_cosine_filter_0
@@ -443,17 +509,21 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [984, 292.0]
+    coordinate: [1728, 292.0]
     rotation: 0
     state: enabled
 
 connections:
 - [analog_random_uniform_source_x_0, '0', blocks_selector_0, '1']
 - [blocks_file_source_0, '0', blocks_selector_0, '0']
+- [blocks_pack_k_bits_bb_0, '0', differential_qam_encoder_0, '0']
 - [blocks_selector_0, '0', epy_block_0, '0']
+- [blocks_unpack_k_bits_bb_0, '0', digital_scrambler_bb_0, '0']
+- [differential_qam_encoder_0, '0', digital_constellation_encoder_bc_0, '0']
 - [digital_constellation_encoder_bc_0, '0', qtgui_const_sink_x_0, '0']
 - [digital_constellation_encoder_bc_0, '0', root_raised_cosine_filter_0, '0']
-- [epy_block_0, '0', digital_constellation_encoder_bc_0, '0']
+- [digital_scrambler_bb_0, '0', blocks_pack_k_bits_bb_0, '0']
+- [epy_block_0, '0', blocks_unpack_k_bits_bb_0, '0']
 - [root_raised_cosine_filter_0, '0', iio_pluto_sink_0, '0']
 - [root_raised_cosine_filter_0, '0', qtgui_waterfall_sink_x_0, '0']
 

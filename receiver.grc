@@ -194,7 +194,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [848, 500.0]
+    coordinate: [1544, 740.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_mag_0
@@ -226,7 +226,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [560, 768.0]
+    coordinate: [576, 560.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_mag_0_1
@@ -242,7 +242,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [560, 720.0]
+    coordinate: [576, 512.0]
     rotation: 0
     state: enabled
 - name: blocks_divide_xx_0
@@ -260,7 +260,23 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [760, 728.0]
+    coordinate: [776, 520.0]
+    rotation: 0
+    state: enabled
+- name: blocks_pack_k_bits_bb_0_0
+  id: blocks_pack_k_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: quantization
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1040, 740.0]
     rotation: 0
     state: enabled
 - name: blocks_short_to_float_0
@@ -277,7 +293,39 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [672, 500.0]
+    coordinate: [1368, 740.0]
+    rotation: 0
+    state: enabled
+- name: blocks_unpack_k_bits_bb_0_0
+  id: blocks_unpack_k_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: quantization
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 740.0]
+    rotation: 0
+    state: enabled
+- name: differential_qam_decoder_0
+  id: differential_qam_decoder
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    order: qam.QAM16
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [464, 740.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_decoder_cb_0
@@ -312,6 +360,24 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [1200, 256.0]
+    rotation: 0
+    state: enabled
+- name: digital_descrambler_bb_0
+  id: digital_descrambler_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    len: '7'
+    mask: '0x8A'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    seed: '0x7F'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [880, 724.0]
     rotation: 0
     state: enabled
 - name: digital_symbol_sync_xx_0
@@ -371,7 +437,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [504, 500.0]
+    coordinate: [1200, 740.0]
     rotation: 0
     state: enabled
 - name: iio_pluto_source_0
@@ -930,7 +996,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [848, 548.0]
+    coordinate: [1544, 788.0]
     rotation: 0
     state: disabled
 - name: qtgui_time_sink_x_0_1
@@ -1027,7 +1093,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [904, 724.0]
+    coordinate: [920, 516.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_1
@@ -1185,7 +1251,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [848, 628.0]
+    coordinate: [1544, 868.0]
     rotation: 0
     state: disabled
 - name: qtgui_waterfall_sink_x_0_0
@@ -1309,14 +1375,18 @@ connections:
 - [blocks_complex_to_mag_0_0, '0', blocks_divide_xx_0, '1']
 - [blocks_complex_to_mag_0_1, '0', blocks_divide_xx_0, '0']
 - [blocks_divide_xx_0, '0', qtgui_time_sink_x_0_1, '0']
+- [blocks_pack_k_bits_bb_0_0, '0', epy_block_1, '0']
 - [blocks_short_to_float_0, '0', audio_sink_1_0, '0']
 - [blocks_short_to_float_0, '0', qtgui_time_sink_x_0_0, '0']
 - [blocks_short_to_float_0, '0', qtgui_waterfall_sink_x_0, '0']
-- [digital_constellation_decoder_cb_0, '0', epy_block_1, '0']
+- [blocks_unpack_k_bits_bb_0_0, '0', digital_descrambler_bb_0, '0']
+- [differential_qam_decoder_0, '0', blocks_unpack_k_bits_bb_0_0, '0']
+- [digital_constellation_decoder_cb_0, '0', differential_qam_decoder_0, '0']
 - [digital_costas_loop_cc_0, '0', virtual_sink_0, '0']
 - [digital_costas_loop_cc_0, '1', qtgui_number_sink_0, '0']
 - [digital_costas_loop_cc_0, '2', qtgui_number_sink_0, '1']
 - [digital_costas_loop_cc_0, '3', qtgui_number_sink_0, '2']
+- [digital_descrambler_bb_0, '0', blocks_pack_k_bits_bb_0_0, '0']
 - [digital_symbol_sync_xx_0, '0', digital_costas_loop_cc_0, '0']
 - [digital_symbol_sync_xx_0, '1', qtgui_number_sink_0_0, '0']
 - [digital_symbol_sync_xx_0, '1', qtgui_time_sink_x_1, '0']
