@@ -19,7 +19,7 @@ outputs:
     dtype: byte
 
 templates:
-  imports: from differential_qam_decoder import differential_qam_decoder
+  imports: from differential_qam_decoder import differential_qam_decoder, qam
   make: differential_qam_decoder(order=${order})
 
 file_format: 1
