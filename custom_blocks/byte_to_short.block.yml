@@ -1,0 +1,23 @@
+id: byte_to_short
+label: Byte to Short
+category: '[Custom]'
+
+parameters:
+  - id: n_bits
+    label: Number of bits
+    dtype: int
+    default: 8
+
+inputs:
+  - domain: stream
+    dtype: byte
+
+outputs:
+  - domain: stream
+    dtype: short
+
+templates:
+  imports: from byte_to_short import byte_to_short
+  make: byte_to_short(n_bits=${n_bits})
+
+file_format: 1

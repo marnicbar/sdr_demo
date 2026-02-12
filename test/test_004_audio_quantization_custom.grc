@@ -80,7 +80,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [832, 176.0]
+    coordinate: [832, 180.0]
     rotation: 0
     state: enabled
 - name: blocks_file_source_0_0
@@ -102,7 +102,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 144.0]
+    coordinate: [16, 148.0]
     rotation: 0
     state: enabled
 - name: blocks_short_to_float_0
@@ -119,27 +119,29 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [632, 176.0]
+    coordinate: [640, 180.0]
     rotation: 0
     state: enabled
-- name: epy_block_0
-  id: epy_block
+- name: blocks_short_to_float_0_0
+  id: blocks_short_to_float
   parameters:
-    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
-      \ GRC will instantiate the first class it finds\nto get ports and parameters\
-      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
-      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
-      from gnuradio import gr\n\n\nclass blk(gr.sync_block):  # other base classes\
-      \ are basic_block, decim_block, interp_block\n    \"\"\"Embedded Python Block\
-      \ example - a simple multiply const\"\"\"\n\n    def __init__(self, n_bits =\
-      \ 8):\n        \"\"\"arguments to this function show up as parameters in GRC\"\
-      \"\"\n        gr.sync_block.__init__(\n            self,\n            name='Short\
-      \ To Byte',\n            in_sig=[np.int16],\n            out_sig=[np.uint8]\n\
-      \        )\n        if (n_bits < 1 or n_bits > 8):\n            raise ValueError(f\"\
-      n_bits must be in range 1..8 (was {n_bits})\")\n        self.n_bits = n_bits\n\
-      \n    def work(self, input_items, output_items):\n        output_items[0][:]\
-      \ = (input_items[0].astype(np.uint16) >> (16 - self.n_bits)).astype(np.uint8)\n\
-      \        return len(output_items[0])\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: 2**15
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [464, 276.0]
+    rotation: 0
+    state: enabled
+- name: byte_to_short_0
+  id: byte_to_short
+  parameters:
     affinity: ''
     alias: ''
     comment: ''
@@ -147,45 +149,10 @@ blocks:
     minoutbuf: '0'
     n_bits: quantization
   states:
-    _io_cache: ('Short To Byte', 'blk', [('n_bits', '8')], [('0', 'short', 1)], [('0',
-      'byte', 1)], 'Embedded Python Block example - a simple multiply const', ['n_bits'])
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [240, 176.0]
-    rotation: 0
-    state: enabled
-- name: epy_block_1
-  id: epy_block
-  parameters:
-    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
-      \ GRC will instantiate the first class it finds\nto get ports and parameters\
-      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
-      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
-      from gnuradio import gr\n\n\nclass blk(gr.sync_block):  # other base classes\
-      \ are basic_block, decim_block, interp_block\n    \"\"\"Embedded Python Block\
-      \ example - a simple multiply const\"\"\"\n\n    def __init__(self, n_bits =\
-      \ 8):\n        \"\"\"arguments to this function show up as parameters in GRC\"\
-      \"\"\n        gr.sync_block.__init__(\n            self,\n            name='Byte\
-      \ To Shorts',\n            in_sig=[np.uint8],\n            out_sig=[np.int16]\n\
-      \        )\n        if (n_bits < 1 or n_bits > 8):\n            raise ValueError(f\"\
-      n_bits must be in range 1..8 (was {n_bits})\")\n        self.n_bits = n_bits\n\
-      \n    def work(self, input_items, output_items):\n        output_items[0][:]\
-      \ = (input_items[0].astype(np.uint16) << (16 - self.n_bits)).astype(np.int16)\n\
-      \        return len(output_items[0])\n"
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    n_bits: quantization
-  states:
-    _io_cache: ('Byte To Shorts', 'blk', [('n_bits', '8')], [('0', 'byte', 1)], [('0',
-      'short', 1)], 'Embedded Python Block example - a simple multiply const', ['n_bits'])
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [448, 176.0]
+    coordinate: [440, 180.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0_0
@@ -242,7 +209,7 @@ blocks:
     marker8: '-1'
     marker9: '-1'
     name: '""'
-    nconnections: '1'
+    nconnections: '2'
     size: '1024'
     srate: samp_rate
     stemplot: 'False'
@@ -346,15 +313,33 @@ blocks:
     coordinate: [832, 320.0]
     rotation: 0
     state: enabled
+- name: short_to_byte_0
+  id: short_to_byte
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    n_bits: quantization
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [256, 180.0]
+    rotation: 0
+    state: enabled
 
 connections:
-- [blocks_file_source_0_0, '0', epy_block_0, '0']
+- [blocks_file_source_0_0, '0', blocks_short_to_float_0_0, '0']
+- [blocks_file_source_0_0, '0', short_to_byte_0, '0']
 - [blocks_short_to_float_0, '0', audio_sink_1_0, '0']
 - [blocks_short_to_float_0, '0', qtgui_time_sink_x_0_0, '0']
 - [blocks_short_to_float_0, '0', qtgui_waterfall_sink_x_0, '0']
-- [epy_block_0, '0', epy_block_1, '0']
-- [epy_block_1, '0', blocks_short_to_float_0, '0']
+- [blocks_short_to_float_0_0, '0', qtgui_time_sink_x_0_0, '1']
+- [byte_to_short_0, '0', blocks_short_to_float_0, '0']
+- [short_to_byte_0, '0', byte_to_short_0, '0']
 
 metadata:
   file_format: 1
-  grc_version: 3.10.11.0
+  grc_version: 3.10.12.0
