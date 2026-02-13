@@ -148,7 +148,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [40, 404.0]
+    coordinate: [64, 396.0]
     rotation: 0
     state: enabled
 - name: blocks_file_source_0
@@ -170,7 +170,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [64, 260.0]
+    coordinate: [72, 228.0]
     rotation: 0
     state: enabled
 - name: blocks_pack_k_bits_bb_0
