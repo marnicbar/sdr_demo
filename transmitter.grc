@@ -34,19 +34,10 @@ options:
 
 blocks:
 - name: constellation
-  id: variable_constellation
+  id: variable
   parameters:
     comment: ''
-    const_points: '[3+3j, 1+3j, 1+1j, 3+1j, -3+3j, -3+1j, -1+1j, -1+3j, -3-3j, -1-3j,
-      -1-1j, -3-1j, 3-3j, 3-1j, 1-1j, 1-3j]'
-    dims: '1'
-    normalization: digital.constellation.AMPLITUDE_NORMALIZATION
-    npwr: '1'
-    precision: '8'
-    rot_sym: '4'
-    soft_dec_lut: None
-    sym_map: '[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]'
-    type: calcdist
+    value: digital.qam.qam_constellation(2**quantization,True,'gray',True)
   states:
     bus_sink: false
     bus_source: false
@@ -270,7 +261,7 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    n_bits: '4'
+    n_bits: quantization
   states:
     bus_sink: false
     bus_source: false
@@ -278,22 +269,6 @@ blocks:
     coordinate: [728, 260.0]
     rotation: 0
     state: enabled
-- name: differential_qam_encoder_0
-  id: differential_qam_encoder
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    order: qam.QAM16
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1200, 332.0]
-    rotation: 0
-    state: disabled
 - name: digital_constellation_encoder_bc_0
   id: digital_constellation_encoder_bc
   parameters:
@@ -319,12 +294,12 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    modulus: '16'
+    modulus: 2**quantization
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1208, 404.0]
+    coordinate: [1208, 324.0]
     rotation: 0
     state: enabled
 - name: digital_scrambler_bb_0
@@ -591,7 +566,7 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    n_bits: '4'
+    n_bits: quantization
   states:
     bus_sink: false
     bus_source: false
@@ -603,7 +578,6 @@ blocks:
 connections:
 - [analog_random_uniform_source_x_0, '0', blocks_selector_0, '1']
 - [blocks_file_source_0, '0', blocks_selector_0, '0']
-- [blocks_pack_k_bits_bb_0, '0', differential_qam_encoder_0, '0']
 - [blocks_pack_k_bits_bb_0, '0', digital_diff_encoder_bb_0, '0']
 - [blocks_selector_0, '0', blocks_short_to_float_0, '0']
 - [blocks_selector_0, '0', short_to_byte_0, '0']
@@ -611,7 +585,6 @@ connections:
 - [blocks_short_to_float_0_0, '0', qtgui_time_sink_x_0, '1']
 - [blocks_unpack_k_bits_bb_0, '0', digital_scrambler_bb_0, '0']
 - [byte_to_short_0, '0', blocks_short_to_float_0_0, '0']
-- [differential_qam_encoder_0, '0', digital_constellation_encoder_bc_0, '0']
 - [digital_constellation_encoder_bc_0, '0', qtgui_const_sink_x_0, '0']
 - [digital_constellation_encoder_bc_0, '0', root_raised_cosine_filter_0, '0']
 - [digital_diff_encoder_bb_0, '0', digital_constellation_encoder_bc_0, '0']

@@ -55,24 +55,15 @@ blocks:
     rotation: 0
     state: enabled
 - name: constellation
-  id: variable_constellation
+  id: variable
   parameters:
     comment: ''
-    const_points: '[3+3j, 1+3j, 1+1j, 3+1j, -3+3j, -3+1j, -1+1j, -1+3j, -3-3j, -1-3j,
-      -1-1j, -3-1j, 3-3j, 3-1j, 1-1j, 1-3j]'
-    dims: '1'
-    normalization: digital.constellation.AMPLITUDE_NORMALIZATION
-    npwr: '1'
-    precision: '8'
-    rot_sym: '4'
-    soft_dec_lut: None
-    sym_map: '[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]'
-    type: calcdist
+    value: digital.qam.qam_constellation(2**quantization,True,'gray',True)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [888, 12.0]
+    coordinate: [896, 12.0]
     rotation: 0
     state: enabled
 - name: costas_loop_bandwidth
@@ -238,7 +229,7 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    n_bits: '4'
+    n_bits: quantization
   states:
     bus_sink: false
     bus_source: false
@@ -246,22 +237,6 @@ blocks:
     coordinate: [1208, 548.0]
     rotation: 0
     state: enabled
-- name: differential_qam_decoder_0
-  id: differential_qam_decoder
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    order: qam.QAM16
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [488, 548.0]
-    rotation: 0
-    state: disabled
 - name: digital_constellation_decoder_cb_0
   id: digital_constellation_decoder_cb
   parameters:
@@ -323,12 +298,12 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    modulus: '16'
+    modulus: 2**quantization
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [488, 596.0]
+    coordinate: [496, 540.0]
     rotation: 0
     state: enabled
 - name: digital_symbol_sync_xx_0
@@ -696,8 +671,6 @@ connections:
 - [blocks_short_to_float_0, '0', qtgui_time_sink_x_0_0, '0']
 - [blocks_unpack_k_bits_bb_0_0, '0', digital_descrambler_bb_0, '0']
 - [byte_to_short_0, '0', blocks_short_to_float_0, '0']
-- [differential_qam_decoder_0, '0', blocks_unpack_k_bits_bb_0_0, '0']
-- [digital_constellation_decoder_cb_0, '0', differential_qam_decoder_0, '0']
 - [digital_constellation_decoder_cb_0, '0', digital_diff_decoder_bb_0, '0']
 - [digital_costas_loop_cc_0, '0', virtual_sink_0, '0']
 - [digital_descrambler_bb_0, '0', blocks_pack_k_bits_bb_0_0, '0']
