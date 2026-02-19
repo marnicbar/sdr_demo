@@ -261,7 +261,7 @@ blocks:
     bus_structure: null
     coordinate: [488, 548.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: digital_constellation_decoder_cb_0
   id: digital_constellation_decoder_cb
   parameters:
@@ -312,6 +312,23 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [904, 532.0]
+    rotation: 0
+    state: enabled
+- name: digital_diff_decoder_bb_0
+  id: digital_diff_decoder_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    coding: digital.DIFF_DIFFERENTIAL
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    modulus: '16'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [488, 596.0]
     rotation: 0
     state: enabled
 - name: digital_symbol_sync_xx_0
@@ -681,8 +698,10 @@ connections:
 - [byte_to_short_0, '0', blocks_short_to_float_0, '0']
 - [differential_qam_decoder_0, '0', blocks_unpack_k_bits_bb_0_0, '0']
 - [digital_constellation_decoder_cb_0, '0', differential_qam_decoder_0, '0']
+- [digital_constellation_decoder_cb_0, '0', digital_diff_decoder_bb_0, '0']
 - [digital_costas_loop_cc_0, '0', virtual_sink_0, '0']
 - [digital_descrambler_bb_0, '0', blocks_pack_k_bits_bb_0_0, '0']
+- [digital_diff_decoder_bb_0, '0', blocks_unpack_k_bits_bb_0_0, '0']
 - [digital_symbol_sync_xx_0, '0', digital_costas_loop_cc_0, '0']
 - [iio_pluto_source_0, '0', qtgui_waterfall_sink_x_0_0, '0']
 - [iio_pluto_source_0, '0', root_raised_cosine_filter_0, '0']

@@ -293,7 +293,7 @@ blocks:
     bus_structure: null
     coordinate: [1200, 332.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: digital_constellation_encoder_bc_0
   id: digital_constellation_encoder_bc
   parameters:
@@ -308,6 +308,23 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [1456, 332.0]
+    rotation: 0
+    state: enabled
+- name: digital_diff_encoder_bb_0
+  id: digital_diff_encoder_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    coding: digital.DIFF_DIFFERENTIAL
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    modulus: '16'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1208, 404.0]
     rotation: 0
     state: enabled
 - name: digital_scrambler_bb_0
@@ -587,6 +604,7 @@ connections:
 - [analog_random_uniform_source_x_0, '0', blocks_selector_0, '1']
 - [blocks_file_source_0, '0', blocks_selector_0, '0']
 - [blocks_pack_k_bits_bb_0, '0', differential_qam_encoder_0, '0']
+- [blocks_pack_k_bits_bb_0, '0', digital_diff_encoder_bb_0, '0']
 - [blocks_selector_0, '0', blocks_short_to_float_0, '0']
 - [blocks_selector_0, '0', short_to_byte_0, '0']
 - [blocks_short_to_float_0, '0', qtgui_time_sink_x_0, '0']
@@ -596,6 +614,7 @@ connections:
 - [differential_qam_encoder_0, '0', digital_constellation_encoder_bc_0, '0']
 - [digital_constellation_encoder_bc_0, '0', qtgui_const_sink_x_0, '0']
 - [digital_constellation_encoder_bc_0, '0', root_raised_cosine_filter_0, '0']
+- [digital_diff_encoder_bb_0, '0', digital_constellation_encoder_bc_0, '0']
 - [digital_scrambler_bb_0, '0', blocks_pack_k_bits_bb_0, '0']
 - [root_raised_cosine_filter_0, '0', iio_pluto_sink_0, '0']
 - [short_to_byte_0, '0', blocks_unpack_k_bits_bb_0, '0']

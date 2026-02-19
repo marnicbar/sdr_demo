@@ -2,6 +2,8 @@
 __pycache__/
 *.pyc
 
+*.wav
+
 !custom_blocks/*.py
 
 output
