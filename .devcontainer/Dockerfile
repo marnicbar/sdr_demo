@@ -1,13 +1,25 @@
 FROM ubuntu:24.04
 
-# Install packages
-RUN apt-get update && apt-get install -y \
+ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+# Install system packages + Python + pip
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     gnuradio \
     sudo \
+    python3 \
+    python3-pip \
+    openssh-client \
+    sshpass \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Ansible via pip
+RUN pip3 install --no-cache-dir --break-system-packages ansible ansible-lint
+
+# Configure sudo for ubuntu user
 RUN usermod -aG sudo ubuntu \
     && echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
