@@ -3,24 +3,48 @@
   hosts: transmitter_pi
   become: true
 
-  pre_tasks:
-    - name: Make sure everything is up to date.
-      ansible.builtin.apt:
-        upgrade: dist
-        update_cache: true
-
-    - name: Check if a reboot is required
-      ansible.builtin.stat:
-        path: /var/run/reboot-required
-      register: reboot_required_file
-
-    - name: Reboot if required
-      ansible.builtin.reboot:
-      when: reboot_required_file.stat.exists
-
   tasks:
-    - name: Install packages
-      ansible.builtin.apt:
-        pkg:
-          - git
-          - gnuradio
+    - name: Include common Raspberry Pi setup tasks
+      ansible.builtin.import_tasks:
+        file: common_rpi_setup.yml
+
+    - name: Set the default ALSA audio device to card 1
+      ansible.builtin.copy:
+        dest: /etc/asound.conf
+        content: |
+          defaults.pcm.card 1
+          defaults.ctl.card 1
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Configure the system to run the transmitter script on boot
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/transmitter.service
+        content: |
+          [Unit]
+          Description=SDR Transmitter Service
+          After=network.target graphical.target
+          Wants=network.target graphical.target
+
+          [Service]
+          ExecStart=/home/{{ ansible_user }}/sdr_demo/run_transmitter.sh
+          WorkingDirectory=/home/{{ ansible_user }}/sdr_demo
+          Restart=always
+          User={{ ansible_user }}
+
+          [Install]
+          WantedBy=graphical.target
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Reload systemd to recognize new service
+      ansible.builtin.systemd:
+        daemon_reload: true
+
+    - name: Enable and start the transmitter systemd service
+      ansible.builtin.systemd:
+        name: transmitter.service
+        enabled: true
+        state: started

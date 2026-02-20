@@ -1,0 +1,26 @@
+- name: Make sure everything is up to date
+  ansible.builtin.apt:
+    upgrade: dist
+    update_cache: true
+
+- name: Check if a reboot is required
+  ansible.builtin.stat:
+    path: /var/run/reboot-required
+  register: reboot_required_file
+
+- name: Reboot if required
+  ansible.builtin.reboot:
+  when: reboot_required_file.stat.exists
+
+- name: Install packages
+  ansible.builtin.apt:
+    pkg:
+      - git
+      - gnuradio
+      - xterm
+
+- name: Pull the latest code from the repository
+  ansible.builtin.git:
+    repo: 'https://github.com/marnicbar/sdr_demo.git'
+    dest: /home/{{ ansible_user }}/sdr_demo
+    version: main
