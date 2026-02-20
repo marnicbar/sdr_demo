@@ -20,6 +20,7 @@
       - xterm
 
 - name: Pull the latest code from the repository
+  become: false
   ansible.builtin.git:
     repo: 'https://github.com/marnicbar/sdr_demo.git'
     dest: /home/{{ ansible_user }}/sdr_demo

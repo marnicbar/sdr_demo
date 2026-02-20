@@ -18,33 +18,43 @@
         group: root
         mode: '0644'
 
+    - name: Ensure user systemd directory exists
+      ansible.builtin.file:
+        path: /home/{{ ansible_user }}/.config/systemd/user
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
+
     - name: Configure the system to run the transmitter script on boot
       ansible.builtin.copy:
-        dest: /etc/systemd/system/transmitter.service
+        dest: /home/{{ ansible_user }}/.config/systemd/user/transmitter.service
         content: |
           [Unit]
-          Description=SDR Transmitter Service
-          After=network.target graphical.target
-          Wants=network.target graphical.target
+          Description=SDR Transmitter GUI Service
+          After=graphical-session.target network.target
+          Wants=graphical-session.target network.target
 
           [Service]
           ExecStart=/home/{{ ansible_user }}/sdr_demo/run_transmitter.sh
           WorkingDirectory=/home/{{ ansible_user }}/sdr_demo
           Restart=always
-          User={{ ansible_user }}
+          Environment=DISPLAY=:0
+          Environment=XAUTHORITY=/home/{{ ansible_user }}/.Xauthority
+          StandardOutput=append:/home/{{ ansible_user }}/sdr_demo/transmitter.log
+          StandardError=append:/home/{{ ansible_user }}/sdr_demo/transmitter.log
 
           [Install]
-          WantedBy=graphical.target
-        owner: root
-        group: root
+          WantedBy=default.target
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
         mode: '0644'
 
-    - name: Reload systemd to recognize new service
-      ansible.builtin.systemd:
-        daemon_reload: true
-
-    - name: Enable and start the transmitter systemd service
+    - name: Start user systemd service 'transmitter'
       ansible.builtin.systemd:
         name: transmitter.service
-        enabled: true
         state: started
+        scope: user
+        enabled: true
+      become: true
+      become_user: "{{ ansible_user }}"
