@@ -18,14 +18,6 @@
         group: root
         mode: '0644'
 
-    - name: Ensure user systemd directory exists
-      ansible.builtin.file:
-        path: /home/{{ ansible_user }}/.config/systemd/user
-        state: directory
-        owner: "{{ ansible_user }}"
-        group: "{{ ansible_user }}"
-        mode: '0755'
-
     - name: Configure the system to run the transmitter script on boot
       ansible.builtin.copy:
         dest: /home/{{ ansible_user }}/.config/systemd/user/transmitter.service

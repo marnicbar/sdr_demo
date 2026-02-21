@@ -25,3 +25,11 @@
     repo: 'https://github.com/marnicbar/sdr_demo.git'
     dest: /home/{{ ansible_user }}/sdr_demo
     version: main
+
+- name: Ensure user systemd directory exists
+  ansible.builtin.file:
+    path: /home/{{ ansible_user }}/.config/systemd/user
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
