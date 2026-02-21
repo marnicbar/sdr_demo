@@ -6,4 +6,8 @@ $DIR_OF_THIS_SCRIPT/compile_flowgraphs.sh transmitter.grc
 export GRC_BLOCKS_PATH=$DIR_OF_THIS_SCRIPT/custom_blocks
 export PYTHONPATH=$GRC_BLOCKS_PATH
 
-python3 $DIR_OF_THIS_SCRIPT/transmitter.py
+if [[ " $* " == *" --fullscreen "* ]]; then
+	python3 $DIR_OF_THIS_SCRIPT/transmitter_fullscreen.py
+else
+    python3 $DIR_OF_THIS_SCRIPT/transmitter.py
+fi

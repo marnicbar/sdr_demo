@@ -28,7 +28,7 @@
           Wants=graphical-session.target network.target
 
           [Service]
-          ExecStart=/home/{{ ansible_user }}/sdr_demo/run_transmitter.sh
+          ExecStart=/home/{{ ansible_user }}/sdr_demo/run_transmitter.sh --fullscreen
           WorkingDirectory=/home/{{ ansible_user }}/sdr_demo
           Restart=always
           Environment=DISPLAY=:0
