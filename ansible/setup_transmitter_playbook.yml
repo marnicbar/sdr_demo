@@ -42,11 +42,12 @@
         group: "{{ ansible_user }}"
         mode: '0644'
 
-    - name: Start user systemd service 'transmitter'
+    - name: Reload the user systemd daemon to recognize the new service restart it and enable it to start on boot
       ansible.builtin.systemd:
         name: transmitter.service
-        state: started
-        scope: user
+        daemon_reload: true
+        state: restarted
         enabled: true
+        scope: user
       become: true
       become_user: "{{ ansible_user }}"
