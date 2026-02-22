@@ -33,3 +33,27 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
+
+# Only needed for the receiver but it is included in both so the transmitter can
+# be easily switched to the receiver role if needed without requiring another setup run
+- name: Set the default ALSA audio device to card 1
+  ansible.builtin.copy:
+    dest: /etc/asound.conf
+    content: |
+      defaults.pcm.card 1
+      defaults.ctl.card 1
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Disable popup window but keep automount (PCManFM default profile)
+  become: true
+  become_user: "{{ ansible_user }}"
+  community.general.ini_file:
+    path: /home/{{ ansible_user }}/.config/pcmanfm/default/pcmanfm.conf
+    section: volume
+    option: autorun
+    value: "0"
+    create: true
+    no_extra_spaces: true
+    mode: '0644'
