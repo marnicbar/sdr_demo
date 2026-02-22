@@ -1,0 +1,19 @@
+id: qam_constellation
+label: QAM Constellation Object
+category: '[Custom]'
+flags: [ show_id, python ]
+
+parameters:
+  - id: bits_per_symbol
+    label: Bits per Symbol
+    dtype: int
+
+asserts:
+  - ${ bits_per_symbol > 1 and bits_per_symbol <= 8}
+
+templates:
+  imports: from qam_constellation import qam_constellation
+  var_make: |-
+    self.${id} = qam_constellation(bits_per_symbol=${bits_per_symbol}).base()
+
+file_format: 1

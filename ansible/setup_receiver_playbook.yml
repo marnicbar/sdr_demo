@@ -8,43 +8,36 @@
       ansible.builtin.import_tasks:
         file: common_rpi_setup.yml
 
-    - name: Set the default ALSA audio device to card 1
-      ansible.builtin.copy:
-        dest: /etc/asound.conf
-        content: |
-          defaults.pcm.card 1
-          defaults.ctl.card 1
-        owner: root
-        group: root
-        mode: '0644'
-
     - name: Configure the system to run the receiver script on boot
       ansible.builtin.copy:
-        dest: /etc/systemd/system/receiver.service
+        dest: /home/{{ ansible_user }}/.config/systemd/user/receiver.service
         content: |
           [Unit]
-          Description=SDR Receiver Service
-          After=network.target graphical.target
-          Wants=network.target graphical.target
+          Description=SDR Receiver GUI Service
+          After=graphical-session.target network.target
+          Wants=graphical-session.target network.target
 
           [Service]
-          ExecStart=/home/{{ ansible_user }}/sdr_demo/run_receiver.sh
+          ExecStart=/home/{{ ansible_user }}/sdr_demo/run_receiver.sh --fullscreen
           WorkingDirectory=/home/{{ ansible_user }}/sdr_demo
           Restart=always
-          User={{ ansible_user }}
+          Environment=DISPLAY=:0
+          Environment=XAUTHORITY=/home/{{ ansible_user }}/.Xauthority
+          StandardOutput=append:/home/{{ ansible_user }}/sdr_demo/receiver.log
+          StandardError=append:/home/{{ ansible_user }}/sdr_demo/receiver.log
 
           [Install]
-          WantedBy=graphical.target
-        owner: root
-        group: root
+          WantedBy=default.target
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
         mode: '0644'
 
-    - name: Reload systemd to recognize new service
-      ansible.builtin.systemd:
-        daemon_reload: true
-
-    - name: Enable and start the receiver systemd service
+    - name: Reload the user systemd daemon to recognize the new service restart it and enable it to start on boot
       ansible.builtin.systemd:
         name: receiver.service
+        daemon_reload: true
+        state: restarted
         enabled: true
-        state: started
+        scope: user
+      become: true
+      become_user: "{{ ansible_user }}"

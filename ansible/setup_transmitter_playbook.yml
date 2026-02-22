@@ -8,16 +8,6 @@
       ansible.builtin.import_tasks:
         file: common_rpi_setup.yml
 
-    - name: Set the default ALSA audio device to card 1
-      ansible.builtin.copy:
-        dest: /etc/asound.conf
-        content: |
-          defaults.pcm.card 1
-          defaults.ctl.card 1
-        owner: root
-        group: root
-        mode: '0644'
-
     - name: Configure the system to run the transmitter script on boot
       ansible.builtin.copy:
         dest: /home/{{ ansible_user }}/.config/systemd/user/transmitter.service
