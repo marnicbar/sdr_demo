@@ -45,21 +45,34 @@ blocks:
     coordinate: [720, 12.0]
     rotation: 0
     state: enabled
-- name: fullscreen_btn
-  id: variable_qtgui_push_button
+- name: fullscreen_select
+  id: variable_qtgui_chooser
   parameters:
     comment: ''
     gui_hint: ''
     label: Fullscreen
-    pressed: '1'
-    released: '0'
-    type: bool
+    label0: Window
+    label1: Fullscreen
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '2'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
     value: '0'
+    widget: radio_buttons
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1144, 12.0]
+    coordinate: [1544, 12.0]
     rotation: 0
     state: enabled
 - name: quantization
@@ -595,9 +608,10 @@ blocks:
   id: snippet
   parameters:
     alias: ''
-    code: "def toggle_fullscreen():\n        if self.isFullScreen():\n           \
-      \ self.showNormal()\n        else:\n            self.showFullScreen()\n\n# Attach\
-      \ function to the instance\nself.toggle_fullscreen = toggle_fullscreen"
+    code: "def set_window_mode(fullscreen):\n    if fullscreen:\n        self.showFullScreen()\n\
+      \    else:\n        self.showNormal()\n\n# Attach function to the instance\n\
+      # self.set_window_mode = set_window_mode\n\nself._fullscreen_select_button_group.buttonClicked[int].connect(\n\
+      \    lambda i: set_window_mode(self._fullscreen_select_options[i])\n)"
     comment: ''
     priority: '0'
     section: main_after_init
@@ -605,26 +619,22 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [904, 12.0]
+    coordinate: [1320, 12.0]
     rotation: 0
     state: enabled
-- name: snippet_1
+- name: snippet_2
   id: snippet
   parameters:
     alias: ''
-    code: "# Find the button by its text\nfor widget in self.findChildren(Qt.QPushButton):\n\
-      \    if widget.text() == \"Fullscreen\":\n        self.fullscreen_button = widget\n\
-      \        break\n\n# Now attach callback\nself.fullscreen_button.clicked.connect(\n\
-      \    lambda: self.showNormal() if self.isFullScreen()\n    else self.showFullScreen()\n\
-      )"
+    code: self.set_fullscreen_select(self.isFullScreen())
     comment: ''
     priority: '0'
-    section: main_after_init
+    section: main_after_start
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1288, 12.0]
+    coordinate: [1664, 12.0]
     rotation: 0
     state: enabled
 

@@ -87,6 +87,36 @@ blocks:
     coordinate: [728, 12.0]
     rotation: 0
     state: enabled
+- name: fullscreen_select
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Fullscreen
+    label0: Window
+    label1: Fullscreen
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '2'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '0'
+    widget: radio_buttons
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1384, 12.0]
+    rotation: 0
+    state: enabled
 - name: quantization
   id: variable
   parameters:
@@ -635,6 +665,39 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [296, 324.0]
+    rotation: 0
+    state: enabled
+- name: snippet_0
+  id: snippet
+  parameters:
+    alias: ''
+    code: "def set_window_mode(fullscreen):\n    if fullscreen:\n        self.showFullScreen()\n\
+      \    else:\n        self.showNormal()\n\n# Attach function to the instance\n\
+      # self.set_window_mode = set_window_mode\n\nself._fullscreen_select_button_group.buttonClicked[int].connect(\n\
+      \    lambda i: set_window_mode(self._fullscreen_select_options[i])\n)"
+    comment: ''
+    priority: '0'
+    section: main_after_init
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1160, 12.0]
+    rotation: 0
+    state: enabled
+- name: snippet_2
+  id: snippet
+  parameters:
+    alias: ''
+    code: self.set_fullscreen_select(self.isFullScreen())
+    comment: ''
+    priority: '0'
+    section: main_after_start
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1504, 12.0]
     rotation: 0
     state: enabled
 - name: virtual_sink_0
