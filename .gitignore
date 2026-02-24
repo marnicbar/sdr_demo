@@ -3,5 +3,5 @@ __pycache__/
 *.pyc
 
 !custom_blocks/*.py
-
+gr_config.ini
 output
