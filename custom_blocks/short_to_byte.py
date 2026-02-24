@@ -17,8 +17,7 @@ class short_to_byte(gr.sync_block):
     def work(self, input_items, output_items):
         shift = 16 - self.n_bits
         output_items[0][:] = (
-            ((input_items[0].astype(np.uint16) + (1 << (shift - 1))) >> shift)
-            .clip(0, (1 << self.n_bits) - 1)
+            ((input_items[0].astype(np.int16).clip(-2**15, 2**15 - 2**(shift-1) - 1) + (1 << (shift - 1))) >> shift)
             .astype(np.uint8)
         )
         return len(output_items[0])
