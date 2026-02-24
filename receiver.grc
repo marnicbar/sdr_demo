@@ -689,7 +689,9 @@ blocks:
   id: snippet
   parameters:
     alias: ''
-    code: self.set_fullscreen_select(self.isFullScreen())
+    code: "from PyQt5 import QtCore\nQtCore.QTimer.singleShot(\n    0,\n    lambda:\
+      \ (\n        self.set_fullscreen_select(self.isFullScreen()),\n        print(\"\
+      Fullscreen radio button initialized\")\n    )\n)"
     comment: ''
     priority: '0'
     section: main_after_start
