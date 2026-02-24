@@ -45,6 +45,7 @@
     owner: root
     group: root
     mode: '0644'
+  notify: Reboot device
 
 - name: Disable popup window but keep automount (PCManFM default profile)
   become: true
@@ -57,3 +58,4 @@
     create: true
     no_extra_spaces: true
     mode: '0644'
+  notify: Reboot device

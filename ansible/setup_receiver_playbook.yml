@@ -3,6 +3,11 @@
   hosts: receiver_pi
   become: true
 
+  handlers:
+    - name: Reboot receiver device
+      ansible.builtin.reboot:
+      listen: Reboot device
+
   tasks:
     - name: Include common Raspberry Pi setup tasks
       ansible.builtin.import_tasks:
