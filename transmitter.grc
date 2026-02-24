@@ -42,14 +42,14 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [720, 12.0]
+    coordinate: [728, 12.0]
     rotation: 0
     state: enabled
 - name: fullscreen_select
   id: variable_qtgui_chooser
   parameters:
     comment: ''
-    gui_hint: ''
+    gui_hint: 1,8,1,4
     label: Fullscreen
     label0: Window
     label1: Fullscreen
@@ -73,6 +73,44 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [1544, 12.0]
+    rotation: 0
+    state: enabled
+- name: lo_frequency_offset
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 0,0,1,12
+    label: LO Frequency Offset
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '-20000'
+    step: '100'
+    stop: '20000'
+    value: lo_frequency_offset_init
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [912, 12.0]
+    rotation: 0
+    state: enabled
+- name: lo_frequency_offset_init
+  id: variable_config
+  parameters:
+    comment: ''
+    config_file: gr_config.ini
+    option: lo_frequency_offset
+    section: transmitter
+    type: real
+    value: '0'
+    writeback: lo_frequency_offset
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1432, 260.0]
     rotation: 0
     state: enabled
 - name: quantization
@@ -115,15 +153,15 @@ blocks:
   id: variable_qtgui_chooser
   parameters:
     comment: ''
-    gui_hint: 0,0,1,2
-    label: ''
-    label0: Audio file
-    label1: Random source
-    label2: ''
+    gui_hint: 1,0,1,1
+    label: Source selection
+    label0: Audio File
+    label1: Random Source
+    label2: Signal Generator
     label3: ''
     label4: ''
     labels: '[]'
-    num_opts: '2'
+    num_opts: '3'
     option0: '0'
     option1: '1'
     option2: '2'
@@ -153,6 +191,36 @@ blocks:
     coordinate: [408, 12.0]
     rotation: 0
     state: enabled
+- name: waveform
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 1,1,1,7
+    label: Waveform
+    label0: Constant
+    label1: Sine
+    label2: Cosine
+    label3: ''
+    label4: ''
+    labels: '["Constant", "Sine", "Cosine", "Square", "Triangle", "Saw Tooth"]'
+    num_opts: '0'
+    option0: '100'
+    option1: '101'
+    option2: '102'
+    option3: '3'
+    option4: '4'
+    options: '[100, 101, 102, 103, 104, 105]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '100'
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1072, 12.0]
+    rotation: 0
+    state: enabled
 - name: analog_random_uniform_source_x_0
   id: analog_random_uniform_source_x
   parameters:
@@ -169,7 +237,31 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [64, 396.0]
+    coordinate: [32, 380.0]
+    rotation: 0
+    state: enabled
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: 0 if waveform == 100 else 2**15-1 if waveform == 101 or waveform == 102 else
+      2**16-1
+    comment: ''
+    freq: '1000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: 0 if waveform <= 102 else -2**15
+    phase: '0'
+    samp_rate: samp_rate
+    showports: 'False'
+    type: short
+    waveform: waveform
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 492.0]
     rotation: 0
     state: enabled
 - name: blocks_file_source_0
@@ -191,7 +283,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [72, 228.0]
+    coordinate: [32, 252.0]
     rotation: 0
     state: enabled
 - name: blocks_pack_k_bits_bb_0
@@ -207,7 +299,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1032, 332.0]
+    coordinate: [984, 468.0]
     rotation: 0
     state: enabled
 - name: blocks_selector_0
@@ -220,7 +312,7 @@ blocks:
     input_index: source_select
     maxoutbuf: '0'
     minoutbuf: '0'
-    num_inputs: '2'
+    num_inputs: '3'
     num_outputs: '1'
     output_index: '0'
     showports: 'True'
@@ -230,7 +322,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [320, 300.0]
+    coordinate: [272, 436.0]
     rotation: 0
     state: enabled
 - name: blocks_short_to_float_0
@@ -247,7 +339,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [776, 180.0]
+    coordinate: [728, 316.0]
     rotation: 0
     state: enabled
 - name: blocks_short_to_float_0_0
@@ -264,7 +356,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [928, 260.0]
+    coordinate: [880, 396.0]
     rotation: 0
     state: enabled
 - name: blocks_unpack_k_bits_bb_0
@@ -280,7 +372,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [728, 332.0]
+    coordinate: [680, 468.0]
     rotation: 0
     state: enabled
 - name: byte_to_short_0
@@ -296,7 +388,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [728, 260.0]
+    coordinate: [680, 396.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_encoder_bc_0
@@ -312,7 +404,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1456, 332.0]
+    coordinate: [1408, 468.0]
     rotation: 0
     state: enabled
 - name: digital_diff_encoder_bb_0
@@ -329,7 +421,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1208, 324.0]
+    coordinate: [1160, 460.0]
     rotation: 0
     state: enabled
 - name: digital_scrambler_bb_0
@@ -347,7 +439,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [896, 316.0]
+    coordinate: [848, 452.0]
     rotation: 0
     state: enabled
 - name: iio_pluto_sink_0
@@ -363,7 +455,7 @@ blocks:
     filter: ''
     filter_source: '''Auto'''
     fpass: '0'
-    frequency: '2500000000'
+    frequency: 2500000000 + lo_frequency_offset
     fstop: '0'
     len_tag_key: ''
     samplerate: samp_rate*sps
@@ -373,7 +465,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1992, 276.0]
+    coordinate: [1944, 412.0]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0
@@ -404,8 +496,8 @@ blocks:
     color8: '"dark red"'
     color9: '"dark green"'
     comment: ''
-    grid: 'False'
-    gui_hint: 1,1,4,1
+    grid: 'True'
+    gui_hint: 7,6,5,6
     label1: ''
     label10: ''
     label2: ''
@@ -427,7 +519,7 @@ blocks:
     marker7: '0'
     marker8: '0'
     marker9: '0'
-    name: '""'
+    name: Constellation
     nconnections: '1'
     size: '1024'
     style1: '0'
@@ -457,15 +549,96 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    xmax: '2'
-    xmin: '-2'
-    ymax: '2'
-    ymin: '-2'
+    xmax: '1.5'
+    xmin: '-1.5'
+    ymax: '1.5'
+    ymin: '-1.5'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1728, 428.0]
+    coordinate: [1680, 564.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'False'
+    grid: 'True'
+    gui_hint: 7,0,5,6
+    label: dBFS
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: Audio Spectrum
+    nconnections: '1'
+    norm_window: 'True'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: float
+    units: ''
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '0'
+    ymin: '-160'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1096, 196.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -499,7 +672,7 @@ blocks:
     ctrlpanel: 'False'
     entags: 'True'
     grid: 'True'
-    gui_hint: 1,0,4,1
+    gui_hint: 2,0,5,12
     label1: Signal 1
     label10: Signal 10
     label2: Signal 2
@@ -521,7 +694,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '""'
+    name: Audio Signal
     nconnections: '2'
     size: '1024'
     srate: samp_rate
@@ -562,7 +735,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1144, 180.0]
+    coordinate: [1096, 316.0]
     rotation: 0
     state: enabled
 - name: root_raised_cosine_filter_0
@@ -585,7 +758,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1728, 292.0]
+    coordinate: [1680, 428.0]
     rotation: 0
     state: enabled
 - name: short_to_byte_0
@@ -601,7 +774,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [544, 332.0]
+    coordinate: [496, 468.0]
     rotation: 0
     state: enabled
 - name: snippet_0
@@ -642,10 +815,12 @@ blocks:
 
 connections:
 - [analog_random_uniform_source_x_0, '0', blocks_selector_0, '1']
+- [analog_sig_source_x_0, '0', blocks_selector_0, '2']
 - [blocks_file_source_0, '0', blocks_selector_0, '0']
 - [blocks_pack_k_bits_bb_0, '0', digital_diff_encoder_bb_0, '0']
 - [blocks_selector_0, '0', blocks_short_to_float_0, '0']
 - [blocks_selector_0, '0', short_to_byte_0, '0']
+- [blocks_short_to_float_0, '0', qtgui_freq_sink_x_0, '0']
 - [blocks_short_to_float_0, '0', qtgui_time_sink_x_0, '0']
 - [blocks_short_to_float_0_0, '0', qtgui_time_sink_x_0, '1']
 - [blocks_unpack_k_bits_bb_0, '0', digital_scrambler_bb_0, '0']
