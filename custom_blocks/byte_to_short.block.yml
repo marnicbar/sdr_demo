@@ -1,6 +1,6 @@
 id: byte_to_short
 label: Byte to Short
-category: '[Custom]'
+category: "[Custom]"
 
 parameters:
   - id: n_bits
@@ -19,5 +19,7 @@ outputs:
 templates:
   imports: from byte_to_short import byte_to_short
   make: byte_to_short(n_bits=${n_bits})
+  callbacks:
+    - set_n_bits(${n_bits})
 
 file_format: 1
