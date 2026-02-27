@@ -306,7 +306,7 @@ blocks:
     alias: ''
     begin_tag: pmt.PMT_NIL
     comment: ''
-    file: ./test/nocturne_e_flat_major_op_9_no_2.wav
+    file: ./audio_examples/nocturne_e_flat_major_op_9_no_2.wav
     length: '0'
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -642,7 +642,7 @@ blocks:
     label7: ''''''
     label8: ''''''
     label9: ''''''
-    legend: 'True'
+    legend: 'False'
     maxoutbuf: '0'
     minoutbuf: '0'
     name: Audio Spectrum
