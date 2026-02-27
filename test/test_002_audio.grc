@@ -22,13 +22,13 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: Not titled yet
+    title: Audio processing example
     window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 8]
+    coordinate: [16, 12.0]
     rotation: 0
     state: enabled
 
@@ -51,7 +51,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [352, 140.0]
+    coordinate: [296, 12.0]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -63,7 +63,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [200, 12]
+    coordinate: [192, 12.0]
     rotation: 0
     state: enabled
 - name: audio_sink_0
@@ -80,7 +80,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [672, 300.0]
+    coordinate: [576, 308.0]
     rotation: 0
     state: enabled
 - name: blocks_wavfile_source_0
@@ -89,7 +89,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    file: /home/mbaer/projects/projektarbeit_sdr_demo/test/hallo_test.wav
+    file: hallo_test.wav
     maxoutbuf: '0'
     minoutbuf: '0'
     nchan: '1'
@@ -122,7 +122,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [352, 300.0]
+    coordinate: [320, 308.0]
     rotation: 0
     state: enabled
 - name: qtgui_waterfall_sink_x_0
@@ -183,7 +183,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [648, 444.0]
+    coordinate: [576, 364.0]
     rotation: 0
     state: enabled
 
@@ -194,4 +194,4 @@ connections:
 
 metadata:
   file_format: 1
-  grc_version: 3.10.11.0
+  grc_version: 3.10.12.0
