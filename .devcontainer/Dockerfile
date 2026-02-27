@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Ansible via pip
-RUN pip3 install --no-cache-dir --break-system-packages ansible ansible-lint
+RUN pip3 install --no-cache-dir --break-system-packages ansible ansible-lint matplotlib
 
 # Configure sudo for ubuntu user
 RUN usermod -aG sudo ubuntu \
