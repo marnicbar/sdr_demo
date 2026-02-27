@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: 'Demonstration 1: Audio'
+    title: Demonstrator 1 - Audio
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -157,7 +157,7 @@ blocks:
     length: '0'
     maxoutbuf: '0'
     minoutbuf: '0'
-    offset: '0'
+    offset: '39'
     repeat: 'True'
     type: short
     vlen: '1'
@@ -331,7 +331,7 @@ blocks:
     label7: Signal 7
     label8: Signal 8
     label9: Signal 9
-    legend: 'True'
+    legend: 'False'
     marker1: '-1'
     marker10: '-1'
     marker2: '-1'
