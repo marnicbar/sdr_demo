@@ -543,7 +543,7 @@ blocks:
     label7: ''
     label8: ''
     label9: ''
-    legend: 'True'
+    legend: 'False'
     marker1: '0'
     marker10: '0'
     marker2: '0'
@@ -708,9 +708,9 @@ blocks:
     entags: 'False'
     grid: 'True'
     gui_hint: 2,0,5,12
-    label1: Signal 1
+    label1: Original
     label10: Signal 10
-    label2: Signal 2
+    label2: Quantized
     label3: Signal 3
     label4: Signal 4
     label5: Signal 5
