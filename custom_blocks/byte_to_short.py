@@ -26,5 +26,7 @@ class byte_to_short(gr.sync_block):
     def work(self, input_items, output_items):
         with self._lock:
             n_bits = self.n_bits
-        output_items[0][:] = (input_items[0].astype(np.uint16) << (16 - n_bits)).astype(np.int16)
+        shift = 16 - n_bits
+        # Inverse of offset-binary quantization used in short_to_byte.
+        output_items[0][:] = ((input_items[0].astype(np.int32) << shift) - 2**15).astype(np.int16)
         return len(output_items[0])

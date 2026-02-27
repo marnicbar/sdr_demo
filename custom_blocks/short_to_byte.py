@@ -26,8 +26,10 @@ class short_to_byte(gr.sync_block):
     def work(self, input_items, output_items):
         with self._lock:
             shift = 16 - self.n_bits
-            output_items[0][:] = (
-                ((input_items[0].astype(np.int16).clip(-2**15, 2**15 - 2**(shift-1) - 1) + (1 << (shift - 1))) >> shift)
-                .astype(np.uint8)
-            )
+            max_code = (1 << self.n_bits) - 1
+
+        # Offset-binary quantization: map int16 domain to 0..(2^n_bits-1).
+        samples = input_items[0].astype(np.int32)
+        codes = (samples + 2**15 + (1 << (shift - 1))) >> shift
+        output_items[0][:] = np.clip(codes, 0, max_code).astype(np.uint8)
         return len(output_items[0])
