@@ -580,7 +580,7 @@ blocks:
     label7: Signal 7
     label8: Signal 8
     label9: Signal 9
-    legend: 'True'
+    legend: 'False'
     marker1: '-1'
     marker10: '-1'
     marker2: '-1'
