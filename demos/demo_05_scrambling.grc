@@ -202,7 +202,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1536, 660.0]
+    coordinate: [1688, 660.0]
     rotation: 0
     state: enabled
 - name: blocks_file_source_0
@@ -240,7 +240,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1032, 460.0]
+    coordinate: [1024, 460.0]
     rotation: 0
     state: enabled
 - name: blocks_pack_k_bits_bb_0_0
@@ -256,7 +256,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1032, 660.0]
+    coordinate: [1168, 660.0]
     rotation: 0
     state: enabled
 - name: blocks_selector_0
@@ -296,7 +296,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1368, 660.0]
+    coordinate: [1504, 660.0]
     rotation: 0
     state: enabled
 - name: blocks_short_to_float_0_0_0
@@ -333,6 +333,24 @@ blocks:
     coordinate: [704, 292.0]
     rotation: 0
     state: enabled
+- name: blocks_skiphead_0
+  id: blocks_skiphead
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: '8'
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1000, 660.0]
+    rotation: 0
+    state: enabled
 - name: blocks_unpack_k_bits_bb_0
   id: blocks_unpack_k_bits_bb
   parameters:
@@ -362,7 +380,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 660.0]
+    coordinate: [672, 660.0]
     rotation: 0
     state: enabled
 - name: byte_to_short_0
@@ -378,7 +396,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 660.0]
+    coordinate: [1320, 660.0]
     rotation: 0
     state: enabled
 - name: byte_to_short_0_0
@@ -410,7 +428,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [272, 660.0]
+    coordinate: [232, 660.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_encoder_bc_0
@@ -444,7 +462,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [880, 644.0]
+    coordinate: [840, 644.0]
     rotation: 0
     state: enabled
 - name: digital_diff_decoder_bb_0
@@ -461,7 +479,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [512, 652.0]
+    coordinate: [472, 652.0]
     rotation: 0
     state: enabled
 - name: digital_diff_encoder_bb_0
@@ -823,6 +841,7 @@ connections:
 - [blocks_short_to_float_0_0_0, '0', qtgui_time_sink_x_0, '1']
 - [blocks_short_to_float_0_1, '0', qtgui_freq_sink_x_0, '0']
 - [blocks_short_to_float_0_1, '0', qtgui_time_sink_x_0, '0']
+- [blocks_skiphead_0, '0', blocks_pack_k_bits_bb_0_0, '0']
 - [blocks_unpack_k_bits_bb_0, '0', digital_scrambler_bb_0, '0']
 - [blocks_unpack_k_bits_bb_0_0, '0', digital_descrambler_bb_0, '0']
 - [byte_to_short_0, '0', blocks_short_to_float_0, '0']
@@ -830,7 +849,7 @@ connections:
 - [digital_constellation_decoder_cb_0, '0', digital_diff_decoder_bb_0, '0']
 - [digital_constellation_encoder_bc_0, '0', qtgui_const_sink_x_0, '0']
 - [digital_constellation_encoder_bc_0, '0', virtual_sink_0, '0']
-- [digital_descrambler_bb_0, '0', blocks_pack_k_bits_bb_0_0, '0']
+- [digital_descrambler_bb_0, '0', blocks_skiphead_0, '0']
 - [digital_diff_decoder_bb_0, '0', blocks_unpack_k_bits_bb_0_0, '0']
 - [digital_diff_encoder_bb_0, '0', digital_constellation_encoder_bc_0, '0']
 - [digital_scrambler_bb_0, '0', blocks_pack_k_bits_bb_0, '0']
