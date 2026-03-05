@@ -9,7 +9,7 @@ export PYTHONPATH=$GRC_BLOCKS_PATH
 cd $DIR_OF_THIS_SCRIPT/demos
 
 if [[ " $* " == *" --fullscreen "* ]]; then
-	python3 $DIR_OF_THIS_SCRIPT/demo_08_transmitter_fullscreen.py
+	python3 demo_08_transmitter_fullscreen.py
 else
-    python3 $DIR_OF_THIS_SCRIPT/demo_08_transmitter.py
+    python3 demo_08_transmitter.py
 fi
