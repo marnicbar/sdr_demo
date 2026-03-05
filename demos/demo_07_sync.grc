@@ -54,10 +54,10 @@ blocks:
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
-    start: '0.0001'
-    step: '0.0001'
-    stop: '0.1'
-    value: '0.002'
+    start: '0.00001'
+    step: '0.00001'
+    stop: '0.001'
+    value: '0.0001'
     widget: counter_slider
   states:
     bus_sink: false
@@ -226,7 +226,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [528, 684.0]
+    coordinate: [736, 748.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -267,7 +267,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1720, 892.0]
+    coordinate: [1720, 964.0]
     rotation: 0
     state: enabled
 - name: blocks_file_source_0
@@ -321,7 +321,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1168, 892.0]
+    coordinate: [1168, 964.0]
     rotation: 0
     state: enabled
 - name: blocks_selector_0
@@ -361,7 +361,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1504, 892.0]
+    coordinate: [1504, 964.0]
     rotation: 0
     state: enabled
 - name: blocks_short_to_float_0_0_0
@@ -413,7 +413,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1016, 892.0]
+    coordinate: [1016, 964.0]
     rotation: 0
     state: enabled
 - name: blocks_unpack_k_bits_bb_0
@@ -445,7 +445,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 892.0]
+    coordinate: [688, 964.0]
     rotation: 0
     state: enabled
 - name: byte_to_short_0
@@ -461,7 +461,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1320, 892.0]
+    coordinate: [1320, 964.0]
     rotation: 0
     state: enabled
 - name: byte_to_short_0_0
@@ -480,6 +480,27 @@ blocks:
     coordinate: [704, 364.0]
     rotation: 0
     state: enabled
+- name: channels_channel_model_0
+  id: channels_channel_model
+  parameters:
+    affinity: ''
+    alias: ''
+    block_tags: 'False'
+    comment: ''
+    epsilon: '1.001'
+    freq_offset: '100.0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_voltage: '0.01'
+    seed: '0'
+    taps: '0.5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [224, 732.0]
+    rotation: 0
+    state: enabled
 - name: digital_constellation_decoder_cb_0
   id: digital_constellation_decoder_cb
   parameters:
@@ -493,7 +514,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [256, 892.0]
+    coordinate: [256, 964.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_encoder_bc_0
@@ -527,7 +548,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1120, 632.0]
+    coordinate: [1328, 696.0]
     rotation: 0
     state: enabled
 - name: digital_descrambler_bb_0
@@ -545,7 +566,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [864, 876.0]
+    coordinate: [864, 948.0]
     rotation: 0
     state: enabled
 - name: digital_diff_decoder_bb_0
@@ -562,7 +583,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 884.0]
+    coordinate: [496, 956.0]
     rotation: 0
     state: enabled
 - name: digital_diff_encoder_bb_0
@@ -624,7 +645,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [728, 652.0]
+    coordinate: [936, 716.0]
     rotation: 0
     state: enabled
 - name: import_0
@@ -821,7 +842,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [256, 948.0]
+    coordinate: [256, 1020.0]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_0
@@ -1096,7 +1117,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1680, 780.0]
+    coordinate: [1680, 852.0]
     rotation: 0
     state: enabled
 - name: qtgui_waterfall_sink_x_0_0
@@ -1157,7 +1178,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [280, 564.0]
+    coordinate: [488, 628.0]
     rotation: 0
     state: enabled
 - name: root_raised_cosine_filter_0
@@ -1203,7 +1224,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [280, 668.0]
+    coordinate: [488, 732.0]
     rotation: 0
     state: enabled
 - name: short_to_byte_0
@@ -1279,7 +1300,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1432, 628.0]
+    coordinate: [1592, 692.0]
     rotation: 0
     state: enabled
 - name: virtual_source_0
@@ -1292,7 +1313,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [16, 708.0]
+    coordinate: [16, 772.0]
     rotation: 0
     state: enabled
 - name: virtual_source_0_0
@@ -1305,7 +1326,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [16, 892.0]
+    coordinate: [16, 964.0]
     rotation: 0
     state: enabled
 
@@ -1327,6 +1348,8 @@ connections:
 - [blocks_unpack_k_bits_bb_0_0, '0', digital_descrambler_bb_0, '0']
 - [byte_to_short_0, '0', blocks_short_to_float_0, '0']
 - [byte_to_short_0_0, '0', blocks_short_to_float_0_0_0, '0']
+- [channels_channel_model_0, '0', qtgui_waterfall_sink_x_0_0, '0']
+- [channels_channel_model_0, '0', root_raised_cosine_filter_0_0, '0']
 - [digital_constellation_decoder_cb_0, '0', digital_diff_decoder_bb_0, '0']
 - [digital_constellation_encoder_bc_0, '0', qtgui_const_sink_x_0, '0']
 - [digital_constellation_encoder_bc_0, '0', root_raised_cosine_filter_0, '0']
@@ -1340,8 +1363,7 @@ connections:
 - [root_raised_cosine_filter_0_0, '0', analog_agc_xx_0, '0']
 - [short_to_byte_0, '0', blocks_unpack_k_bits_bb_0, '0']
 - [short_to_byte_0, '0', byte_to_short_0_0, '0']
-- [virtual_source_0, '0', qtgui_waterfall_sink_x_0_0, '0']
-- [virtual_source_0, '0', root_raised_cosine_filter_0_0, '0']
+- [virtual_source_0, '0', channels_channel_model_0, '0']
 - [virtual_source_0_0, '0', digital_constellation_decoder_cb_0, '0']
 - [virtual_source_0_0, '0', qtgui_const_sink_x_0_0, '0']
 
