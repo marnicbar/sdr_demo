@@ -490,7 +490,7 @@ blocks:
     filter: ''
     filter_source: '''Auto'''
     fpass: '0'
-    frequency: 2500000000 + lo_frequency_offset
+    frequency: 2450000000 + lo_frequency_offset
     fstop: '0'
     len_tag_key: ''
     samplerate: samp_rate*sps
@@ -781,7 +781,7 @@ blocks:
     alpha: rrc_rolloff
     comment: ''
     decim: '8'
-    gain: '1'
+    gain: '2'
     interp: sps
     maxoutbuf: '0'
     minoutbuf: '0'

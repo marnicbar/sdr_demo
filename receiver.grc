@@ -227,7 +227,7 @@ blocks:
     max_gain: '65536'
     maxoutbuf: '0'
     minoutbuf: '0'
-    rate: '0.1'
+    rate: '0.01'
     reference: '1.0'
     type: complex
   states:
@@ -427,7 +427,7 @@ blocks:
     filter: ''
     filter_source: '''Auto'''
     fpass: '0'
-    frequency: '2500000000'
+    frequency: '2450000000'
     fstop: '0'
     gain1: '''slow_attack'''
     len_tag_key: packet_len
@@ -704,7 +704,7 @@ blocks:
     alpha: rrc_rolloff
     comment: ''
     decim: '1'
-    gain: '1'
+    gain: '2'
     interp: sps
     maxoutbuf: '0'
     minoutbuf: '0'
