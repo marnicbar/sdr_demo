@@ -9,7 +9,7 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
-grcc "$1"
+grcc --output $(dirname "$(realpath $1)") "$1"
 
 # Get the name of the generated Python file by replacing the .grc extension with .py
 py_file="${1%.*}.py"

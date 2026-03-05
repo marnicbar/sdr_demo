@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 DIR_OF_THIS_SCRIPT=$(dirname "$(realpath $0)")
 
-$DIR_OF_THIS_SCRIPT/compile_flowgraphs.sh transmitter.grc
+$DIR_OF_THIS_SCRIPT/compile_flowgraphs.sh $DIR_OF_THIS_SCRIPT/demos/demo_08_transmitter.grc
 
 export GRC_BLOCKS_PATH=$DIR_OF_THIS_SCRIPT/custom_blocks
 export PYTHONPATH=$GRC_BLOCKS_PATH
 
 if [[ " $* " == *" --fullscreen "* ]]; then
-	python3 $DIR_OF_THIS_SCRIPT/transmitter_fullscreen.py
+	python3 $DIR_OF_THIS_SCRIPT/demos/demo_08_transmitter_fullscreen.py
 else
-    python3 $DIR_OF_THIS_SCRIPT/transmitter.py
+    python3 $DIR_OF_THIS_SCRIPT/demos/demo_08_transmitter.py
 fi
