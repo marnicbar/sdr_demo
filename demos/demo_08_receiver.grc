@@ -427,7 +427,7 @@ blocks:
     filter: ''
     filter_source: '''Auto'''
     fpass: '0'
-    frequency: '2450000000'
+    frequency: 2450000000+lo_frequency_offset
     fstop: '0'
     gain1: '''slow_attack'''
     len_tag_key: packet_len
