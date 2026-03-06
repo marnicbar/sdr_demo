@@ -79,15 +79,15 @@ blocks:
     label4: ''
     labels: '[]'
     num_opts: '2'
-    option0: '0'
-    option1: '1'
+    option0: 'True'
+    option1: 'False'
     option2: '2'
     option3: '3'
     option4: '4'
     options: '[0, 1, 2]'
     orient: Qt.QVBoxLayout
-    type: int
-    value: '0'
+    type: raw
+    value: 'False'
     widget: radio_buttons
   states:
     bus_sink: false
@@ -724,8 +724,8 @@ blocks:
   parameters:
     alias: ''
     code: "def set_window_mode(fullscreen):\n    if fullscreen:\n        self.showFullScreen()\n\
-      \    else:\n        self.showNormal()\n\n# Attach function to the instance\n\
-      # self.set_window_mode = set_window_mode\n\nself._fullscreen_select_button_group.buttonClicked[int].connect(\n\
+      \    else:\n        self.showNormal()\n\n# Attach function to the button clicked\
+      \ event\nself._fullscreen_select_button_group.buttonClicked[int].connect(\n\
       \    lambda i: set_window_mode(self._fullscreen_select_options[i])\n)"
     comment: ''
     priority: '0'
@@ -751,7 +751,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1912, 12.0]
+    coordinate: [1928, 12.0]
     rotation: 0
     state: enabled
 - name: virtual_sink_0
