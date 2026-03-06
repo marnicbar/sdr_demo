@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 
+.ansible/
 !custom_blocks/*.py
 !misc/*.py
 *.ini
